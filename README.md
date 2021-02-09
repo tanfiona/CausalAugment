@@ -19,7 +19,7 @@ From here, to create copies of original+edits, run the code under 'process/proce
 
 ### Training and testing
 ```
-cd models
+cd model
 pip install .
 cd ..
 cd src

@@ -235,20 +235,20 @@ def run_one_full_round(directory_name, edits_file_name, dataset_name, edits_name
 if __name__ == '__main__':
     tic = time.time()
 
-    # ##### regular edits #####
-    # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
-    #     edits_file_name = "pubmed_edits.csv",
-    #     filter_examples_by = None,
-    #     dataset_name = 'pubmed',
-    #     edits_name = '_edits',
-    #     extensions = '',
-    #     base_extensions = ''
-    #     )
+    ##### regular edits #####
+    run_one_full_round(
+        directory_name = "./src/data/",
+        edits_file_name = "pubmed_edits.csv",
+        filter_examples_by = None,
+        dataset_name = 'pubmed',
+        edits_name = '_edits',
+        extensions = '',
+        base_extensions = ''
+        )
 
     # ##### multiple edits #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_edits_multiples.csv",
     #     filter_examples_by = "pubmed_edits_5t.csv",
     #     dataset_name = 'pubmed',
@@ -259,7 +259,7 @@ if __name__ == '__main__':
 
     # ##### shorten edits #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_edits_shorten.csv",
     #     filter_examples_by = "pubmed_edits_5t.csv",
     #     dataset_name = 'pubmed',
@@ -270,7 +270,7 @@ if __name__ == '__main__':
 
     # ##### synonyms edits #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_edits_synonyms.csv",
     #     filter_examples_by = "pubmed_edits_5t.csv",
     #     dataset_name = 'pubmed',
@@ -281,7 +281,7 @@ if __name__ == '__main__':
 
     # ##### t5para edits #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_edits_t5para.csv",
     #     filter_examples_by = "pubmed_edits_5t.csv",
     #     dataset_name = 'pubmed',
@@ -292,7 +292,7 @@ if __name__ == '__main__':
 
     # ##### shorten originals + shorten edits #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_edits_shorten.csv",
     #     filter_examples_by = "pubmed_edits_5t.csv",
     #     dataset_name = 'pubmed',
@@ -303,7 +303,7 @@ if __name__ == '__main__':
     
     # ##### mask originals + mask edits #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_edits_mask.csv",
     #     filter_examples_by = "pubmed_edits_5t.csv",
     #     dataset_name = 'pubmed',
@@ -314,7 +314,7 @@ if __name__ == '__main__':
 
     # ##### removed originals + removed edits #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_edits_removed.csv",
     #     filter_examples_by = None,
     #     dataset_name = 'pubmed',
@@ -323,21 +323,21 @@ if __name__ == '__main__':
     #     base_extensions = '_removed'
     #     )
 
-    ##### regular edits (2to4) #####
-    run_one_full_round(
-        directory_name = "D:/50 CausalCF/data/",
-        edits_file_name = "pubmed_2to4_edits.csv",
-        filter_examples_by = None,
-        dataset_name = 'pubmed',
-        edits_name = '_2to4_edits',
-        extensions = '',
-        base_extensions = '',
-        run_5t = False
-        )
+    # ##### regular edits (2to4) #####
+    # run_one_full_round(
+    #     directory_name = "./src/data/",
+    #     edits_file_name = "pubmed_2to4_edits.csv",
+    #     filter_examples_by = None,
+    #     dataset_name = 'pubmed',
+    #     edits_name = '_2to4_edits',
+    #     extensions = '',
+    #     base_extensions = '',
+    #     run_5t = False
+    #     )
 
     # ##### multiple edits (2to1) #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_2to1_edits_multiples.csv",
     #     filter_examples_by = "pubmed_2to1_edits_4t.csv",
     #     dataset_name = 'pubmed',
@@ -349,7 +349,7 @@ if __name__ == '__main__':
 
     # ##### shorten edits (2to1) #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_2to1_edits_shorten.csv",
     #     filter_examples_by = "pubmed_2to1_edits_4t.csv",
     #     dataset_name = 'pubmed',
@@ -361,7 +361,7 @@ if __name__ == '__main__':
 
     # ##### synonyms edits (2to1) #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_2to1_edits_synonyms.csv",
     #     filter_examples_by = "pubmed_2to1_edits_4t.csv",
     #     dataset_name = 'pubmed',
@@ -373,7 +373,7 @@ if __name__ == '__main__':
     
     # ##### t5para edits (2to1) #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_2to1_edits_t5para.csv",
     #     filter_examples_by = "pubmed_2to1_edits_4t.csv",
     #     dataset_name = 'pubmed',
@@ -385,7 +385,7 @@ if __name__ == '__main__':
     
     # ##### shorten originals + shorten edits (2to1) #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_2to1_edits_shorten.csv",
     #     filter_examples_by = "pubmed_2to1_edits_4t.csv",
     #     dataset_name = 'pubmed',
@@ -398,7 +398,7 @@ if __name__ == '__main__':
     # ##### mix: shorten base + 1to4 shorten + 2to1 shorten #####
 
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = ["pubmed_edits_shorten.csv", "pubmed_2to1_edits_shorten.csv"],
     #     filter_examples_by = "pubmed_2to1_edits_4t.csv",
     #     dataset_name = 'pubmed',
@@ -409,7 +409,7 @@ if __name__ == '__main__':
     
     # ##### mask originals + mask edits (2to1) #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_2to1_edits_mask.csv",
     #     filter_examples_by = "pubmed_2to1_edits_4t.csv",
     #     dataset_name = 'pubmed',
@@ -421,7 +421,7 @@ if __name__ == '__main__':
 
     # ##### removed originals + removed edits #####
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = "pubmed_2to1_edits_removed.csv",
     #     filter_examples_by = None,
     #     dataset_name = 'pubmed',
@@ -430,98 +430,27 @@ if __name__ == '__main__':
     #     base_extensions = '_removed'
     #     )
 
-    ##### all: base + 1to4 + 2to1 + 2to4 edits #####
+    # ##### all: base + 1to4 + 2to1 + 2to4 edits #####
 
-    run_one_full_round(
-        directory_name = "D:/50 CausalCF/data/",
-        edits_file_name = ["pubmed_edits.csv", "pubmed_2to1_edits.csv", "pubmed_2to4_edits.csv"],
-        filter_examples_by = None,
-        dataset_name = 'pubmed',
-        edits_name = '_all_edits',
-        extensions = '',
-        base_extensions = ''
-        )
+    # run_one_full_round(
+    #     directory_name = "./src/data/",
+    #     edits_file_name = ["pubmed_edits.csv", "pubmed_2to1_edits.csv", "pubmed_2to4_edits.csv"],
+    #     filter_examples_by = None,
+    #     dataset_name = 'pubmed',
+    #     edits_name = '_all_edits',
+    #     extensions = '',
+    #     base_extensions = ''
+    #     )
 
     # ##### mix: base + 1to4 shorten + 2to1 edits #####
 
     # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
+    #     directory_name = "./src/data/",
     #     edits_file_name = ["pubmed_edits_shorten.csv", "pubmed_2to1_edits.csv"],
     #     filter_examples_by = None,
     #     dataset_name = 'pubmed',
     #     edits_name = '_mix01_edits',
     #     extensions = '',
-    #     base_extensions = ''
-    #     )
-
-    
-
-    ##### other datasets #####
-    # ##### regular edits #####
-    # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
-    #     edits_file_name = "scite_edits.csv",
-    #     filter_examples_by = None,
-    #     dataset_name = 'scite',
-    #     edits_name = '_edits',
-    #     extensions = '',
-    #     base_extensions = '',
-    #     run_5t=False
-    #     )
-
-    # #### shorten edits #####
-    # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
-    #     edits_file_name = "scite_edits_shorten.csv",
-    #     filter_examples_by = "scite_edits_4t.csv",
-    #     dataset_name = 'scite',
-    #     edits_name = '_edits',
-    #     extensions = '_shorten',
-    #     base_extensions = ''
-    #     )
-
-    # #### multiples edits #####
-    # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
-    #     edits_file_name = "scite_edits_multiples.csv",
-    #     filter_examples_by = "scite_edits_4t.csv",
-    #     dataset_name = 'scite',
-    #     edits_name = '_edits',
-    #     extensions = '_multiples',
-    #     base_extensions = ''
-    #     )
-
-    # ##### regular edits #####
-    # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
-    #     edits_file_name = "altlex_edits.csv",
-    #     filter_examples_by = None,
-    #     dataset_name = 'altlex',
-    #     edits_name = '_edits',
-    #     extensions = '',
-    #     base_extensions = '',
-    #     run_5t=False
-    #     )
-
-    # #### shorten edits #####
-    # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
-    #     edits_file_name = "altlex_edits_shorten.csv",
-    #     filter_examples_by = "altlex_edits_4t.csv",
-    #     dataset_name = 'altlex',
-    #     edits_name = '_edits',
-    #     extensions = '_shorten',
-    #     base_extensions = ''
-    #     )
-
-    # #### multiples edits #####
-    # run_one_full_round(
-    #     directory_name = "D:/50 CausalCF/data/",
-    #     edits_file_name = "altlex_edits_multiples.csv",
-    #     filter_examples_by = "altlex_edits_4t.csv",
-    #     dataset_name = 'altlex',
-    #     edits_name = '_edits',
-    #     extensions = '_multiples',
     #     base_extensions = ''
     #     )
 

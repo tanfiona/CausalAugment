@@ -39,21 +39,21 @@ except:
     pass
 
 # for paraphrasers, comment out if not using
-# MAX_LENGTH = 256
-# def set_seed(seed):
-#     torch.manual_seed(seed)
-#     if torch.cuda.is_available():
-#         torch.cuda.manual_seed_all(seed)
-# set_seed(123)
+MAX_LENGTH = 256
+def set_seed(seed):
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+set_seed(123)
 
-# model = T5ForConditionalGeneration.from_pretrained('ramsrigouthamg/t5_paraphraser')
-# tokenizer = T5Tokenizer.from_pretrained('ramsrigouthamg/t5_paraphraser')
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# print (f'using device: {device}')
-# model = model.to(device)
+model = T5ForConditionalGeneration.from_pretrained('ramsrigouthamg/t5_paraphraser')
+tokenizer = T5Tokenizer.from_pretrained('ramsrigouthamg/t5_paraphraser')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+print (f'using device: {device}')
+model = model.to(device)
+
 
 ########## negation functions
-
 
 def if_consequetive(l):
     return sorted(l) == list(range(min(l), max(l)+1))
@@ -467,7 +467,7 @@ def negate_causes(dictionary, item, edit_which, num_words=10, verbose=True):
 
 def main(dataset):
     # load data
-    with open(f'data/{dataset}_document_raw.pickle', 'rb') as f:
+    with open(f'./src/data/{dataset}_document_raw.pickle', 'rb') as f:
         data_dict = pickle.load(f)
     
     # filter data
@@ -522,7 +522,7 @@ def main(dataset):
         'ed_signal': edit_signal_dict,
         'ed_target': edit_target_dict
     }
-    with open(f'data/{dataset}_document_edits.pickle', 'wb') as f:
+    with open(f'./src/data/{dataset}_document_edits.pickle', 'wb') as f:
         pickle.dump(edits_dict, f, pickle.HIGHEST_PROTOCOL)
 
 
@@ -677,8 +677,8 @@ def main_csci(file_name, dataset, ed_type = '1to4'):
     
     label_filter = ed_type[0]
 
-    base_file_name = 'data/{}_base.csv'.format(dataset)
-    edits_file_name = 'data/{}{}_document_edits.pickle'.format(dataset, _ed_type)
+    base_file_name = './src/data/{}_base.csv'.format(dataset)
+    edits_file_name = './src/data/{}{}_document_edits.pickle'.format(dataset, _ed_type)
     print('generating >>> {} ...'.format(edits_file_name))
 
     # load file
@@ -829,8 +829,8 @@ def find_root_phrase_from_doc(text, edit_id, edit_text):
 def process_and_keep_edits(dataset, extensions=''):
 
     print('generating >>> {}_edits{} ...'.format(dataset, extensions))
-    edits_file_name = 'data/{}_document_edits.pickle'.format(dataset) # in
-    csv_file_name = 'data/{}_edits{}.csv'.format(dataset, extensions) # out
+    edits_file_name = './src/data/{}_document_edits.pickle'.format(dataset) # in
+    csv_file_name = './src/data/{}_edits{}.csv'.format(dataset, extensions) # out
 
     wnl = WordNetLemmatizer()
     with open(edits_file_name, 'rb') as f:
@@ -906,9 +906,9 @@ def edit_originals(dataset, extensions='', base_file_name=None, csv_file_name=No
 
     # load file
     if base_file_name is None:
-        base_file_name = 'data/{}_base.csv'.format(dataset)
+        base_file_name = './src/data/{}_base.csv'.format(dataset)
     if csv_file_name is None:
-        csv_file_name = 'data/{}_base{}.csv'.format(dataset, extensions)
+        csv_file_name = './src/data/{}_base{}.csv'.format(dataset, extensions)
     print('generating >>> {} ...'.format(csv_file_name.split('/')[-1]))
 
     sents = pd.read_csv(base_file_name)
@@ -1132,17 +1132,17 @@ def get_t5_paraphrased_text(text):
 
 if __name__ == '__main__':
     tic = time.time()
-    # ### generate c1->c4 edits
-    # file_name = r"D:\50 CausalCF\data\causal-language-use-in-science-master\data\pubmed_causal_language_use.csv" # contains duplicates
-    # main_csci(file_name=file_name, dataset='pubmed')
+    ### generate c1->c4 edits
+    file_name = './src/data/pubmed_base.csv' # contains duplicates
+    main_csci(file_name=file_name, dataset='pubmed')
 
-    # ### select/render edits (to do: rewrite into class to save computation, not urgent)
-    # process_and_keep_edits(dataset='pubmed')
-    # process_and_keep_edits(dataset='pubmed', extensions='_multiples')
-    # process_and_keep_edits(dataset='pubmed', extensions='_shorten')
-    # process_and_keep_edits(dataset='pubmed', extensions='_mask')
-    # process_and_keep_edits(dataset='pubmed', extensions='_synonyms')
-    # process_and_keep_edits(dataset='pubmed', extensions='_t5para')
+    ### select/render edits
+    process_and_keep_edits(dataset='pubmed')
+    process_and_keep_edits(dataset='pubmed', extensions='_multiples')
+    process_and_keep_edits(dataset='pubmed', extensions='_shorten')
+    process_and_keep_edits(dataset='pubmed', extensions='_mask')
+    process_and_keep_edits(dataset='pubmed', extensions='_synonyms')
+    process_and_keep_edits(dataset='pubmed', extensions='_t5para')
 
     # ### ext: on originals
     # edit_originals(dataset='pubmed', extensions='_shorten')
@@ -1150,33 +1150,19 @@ if __name__ == '__main__':
     # edit_originals(dataset='pubmed', extensions='_synonyms')
     # edit_originals(dataset='pubmed', extensions='_t5para')
  
-    # ### generate c2->c1 edits
-    # file_name = 'data/pubmed_base.csv'
-    # main_csci(file_name=file_name, dataset='pubmed', ed_type='2to1')
-    # process_and_keep_edits(dataset='pubmed_2to1')
-    # process_and_keep_edits(dataset='pubmed_2to1', extensions='_shorten')
+    ### generate c2->c1 edits
+    file_name = './src/data/pubmed_base.csv'
+    main_csci(file_name=file_name, dataset='pubmed', ed_type='2to1')
+    process_and_keep_edits(dataset='pubmed_2to1')
+    process_and_keep_edits(dataset='pubmed_2to1', extensions='_shorten')
     process_and_keep_edits(dataset='pubmed_2to1', extensions='_multiples')
-    # process_and_keep_edits(dataset='pubmed_2to1', extensions='_mask')
-    # process_and_keep_edits(dataset='pubmed_2to1', extensions='_synonyms')
-    # process_and_keep_edits(dataset='pubmed_2to1', extensions='_t5para')
+    process_and_keep_edits(dataset='pubmed_2to1', extensions='_mask')
+    process_and_keep_edits(dataset='pubmed_2to1', extensions='_synonyms')
+    process_and_keep_edits(dataset='pubmed_2to1', extensions='_t5para')
 
-    # ### generate c2->c1->c4 edits (future to do: make method 'append' instead of new)
-    # file_name = 'data/pubmed_2to1_edits.csv'
-    # main_csci(file_name=file_name, dataset='pubmed', ed_type='2to4')
-    # process_and_keep_edits(dataset='pubmed_2to4')
-
-
-    # ### other datasets
-    # ### generate c1->c4 edits
-    # file_name = r"D:\50 CausalCF\data\altlex-master\data\altlex_train.csv"
-    # main_csci(file_name=file_name, dataset='altlex')
-    # process_and_keep_edits(dataset='altlex')
-    # process_and_keep_edits(dataset='altlex', extensions='_shorten')
-    process_and_keep_edits(dataset='altlex', extensions='_multiples')
-    # file_name = r"D:\51 CausalScience\causal-language-use-in-science\data\scite_train_sentences.csv"
-    # main_csci(file_name=file_name, dataset='scite')
-    # process_and_keep_edits(dataset='scite')
-    # process_and_keep_edits(dataset='scite', extensions='_shorten')
-    process_and_keep_edits(dataset='scite', extensions='_multiples')
+    ### generate c2->c1->c4 edits
+    file_name = './src/data/pubmed_2to1_edits.csv'
+    main_csci(file_name=file_name, dataset='pubmed', ed_type='2to4')
+    process_and_keep_edits(dataset='pubmed_2to4')
 
     print(f'time used: {time.time()-tic:.0f} seconds')

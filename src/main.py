@@ -279,10 +279,6 @@ class ModelTrainTester(object):
         if classifier_name == 'svm' or classifier_name == 'supcon':
             # svm model outputs mid_outputs
             y_pred, mid_output = model.predict(X_train)
-            # print(f'y_train.shape: {y_train.shape} | y_pred.shape: {y_pred.shape} | mid_output.shape: {mid_output.shape}')
-            # print('Example y_pred: {} and mid_output: {}'.format(y_pred[0], mid_output[0]))
-            print('np.any(np.isnan(mid_output))', np.any(np.isnan(mid_output)))
-            print('np.any(np.isnan(y_train))', np.any(np.isnan(y_train)))
             svm = SVC(kernel='linear', C=1e-2)
             svm.fit(mid_output, y_train)
             model_file_to_save_2 = model_file_to_save[:-4]+'.joblib'
@@ -357,19 +353,6 @@ class ModelTrainTester(object):
             
             del model
             y_pred_all += y_pred.tolist()
-            # print('y_proba:', y_proba)
-            # print('y_proba.shape', y_proba.shape)
-            # print('y_pred.shape', y_pred.shape)
-            # print('X_test.shape', X_test.shape)
-            # print('y_test.shape', y_test.shape)
-            """
-            y_proba.shape (1754, 5)
-            y_pred.shape (1754,)
-            X_test.shape (1754, 4)
-            y_test.shape (1754,)
-            y_pred.shape: (1754,)
-            y_test.shape: (1754,)
-            """
 
             tmp = pd.DataFrame(data=y_proba, columns=[f'c{i}' for i in range(self.num_classes)])
             tmp['confidence'] = tmp.max(axis=1)
@@ -385,18 +368,7 @@ class ModelTrainTester(object):
                 tmp = tmp.merge(aug[['sentence', 'pmid']], on='sentence', how='left', suffixes=['','_aug'])
                 tmp['pmid'] = tmp['pmid'].fillna(tmp['pmid_aug'])
                 del(tmp['pmid_aug'])
-                # add neg below
 
-                # tmp['sentence'] = pd.concat(
-                #     [X_test.iloc[:,0], X_test.iloc[:,1]], 
-                #     ignore_index=True).tolist()
-                # tmp['label'] = y_test.tolist()
-                # if 'pmid' in test_data.columns:
-                #     top = test_data['pmid'].astype(str).tolist() 
-                #     bottom = [str(s) + '_mask' for s in top]
-                #     tmp['pmid'] = top + bottom
-                # else:
-                #     tmp['pmid'] = None
             else:
                 tmp['sentence'] = X_test.tolist()
                 tmp['label'] = y_test.tolist()
@@ -537,101 +509,10 @@ class ModelTrainTester(object):
         df_out.to_csv(output_pred_file, index=False, float_format="%.3f")
         print(f'\n- output prediction to: {output_pred_file}\n')
 
-    def evaluate_and_error_analysis(self):
-        df = pd.read_csv(self.get_pred_csv_file(mode='train')) # -2: a flag indicating putting together the results on all folds
-        df['pred'] = df['winner'].apply(lambda x:int(x[1])) # from c0->0, c1->1, c2->2, c3->3
-
-        print('\nConfusion Matrix:\n')
-        cm = confusion_matrix(df.label, df.pred)
-        print(cm)
-
-        print('\n\nClassification Report:\n')
-        print(classification_report(df.label, df.pred))
-
-        out = ["""
-        <style>
-            * {font-family:arial}
-            body {width:900px;margin:auto}
-            .wrong {color:red;}
-            .hi1 {font-weight:bold}
-        </style>
-        <table cellpadding=10>
-        """]
-
-        row = f'<tr><th><th><th colspan=4>Predicted</tr>\n<tr><td><td>'
-        for i in range(self.num_classes):
-            row += f"<th>{self.label_name[i]}"
-        for i in range(self.num_classes):
-            row += f'''\n<tr>{'<th rowspan=4>Actual' if i==0 else ''}<th align=right>{self.label_name[i]}'''
-            for j in range(self.num_classes):
-                row += f'''<td align=right><a href='#link{i}{j}'>{cm[i][j]}</a></td>'''
-        out.append(row + "</table>")
-
-        for i in range(self.num_classes):
-            for j in range(self.num_classes):
-                row = f"<div id=link{i}{j}><h2>{self.label_name[i]} => {self.label_name[j]}</h2><table cellpadding=10>"
-                row += f'<tr><th><th>Sentence<th>Label<th>{self.label_name[0]}<th>{self.label_name[1]}<th>{self.label_name[2]}<th>{self.label_name[3]}<th>mark</tr>'
-                out.append(row)
-
-                df_ = df[(df.label==i) & (df.pred==j)]
-                df_ = df_.sort_values('confidence', ascending=False)
-
-                cnt = 0
-
-                if self.num_classes == 4:
-                    for c0, c1, c2, c3, sentence, label, pred in zip(df_.c0, df_.c1, df_.c2, df_.c3, df_.sentence, df_.label, df_.pred):
-                        cnt += 1
-                        mark = "" if label == pred else "<span class=wrong>oops</span>"
-                        item = f"""<tr><th valign=top>{cnt}.
-                                <td valign=top width=70%>{sentence}
-                                <td valign=top>{self.label_name[label]}
-                                <td valign=top class=hi{int(c0>max(c1,c2,c3))}>{c0:.2f}
-                                <td valign=top class=hi{int(c1>max(c0,c2,c3))}>{c1:.2f}
-                                <td valign=top class=hi{int(c2>max(c0,c1,c3))}>{c2:.2f}
-                                <td valign=top class=hi{int(c3>max(c0,c1,c2))}>{c3:.2f}
-                                <td valign=top>{mark}</tr>"""
-                        out.append(item)
-                elif self.num_classes == 5:
-                    for c0, c1, c2, c3, c4, sentence, label, pred in zip(df_.c0, df_.c1, df_.c2, df_.c3, df_.c4, df_.sentence, df_.label, df_.pred):
-                        cnt += 1
-                        mark = "" if label == pred else "<span class=wrong>oops</span>"
-                        item = f"""<tr><th valign=top>{cnt}.
-                                <td valign=top width=70%>{sentence}
-                                <td valign=top>{label_name[label]}
-                                <td valign=top class=hi{int(c0>max(c1,c2,c3,c4))}>{c0:.2f}
-                                <td valign=top class=hi{int(c1>max(c0,c2,c3,c4))}>{c1:.2f}
-                                <td valign=top class=hi{int(c2>max(c0,c1,c3,c4))}>{c2:.2f}
-                                <td valign=top class=hi{int(c3>max(c0,c1,c2,c4))}>{c3:.2f}
-                                <td valign=top class=hi{int(c4>max(c0,c1,c2,c3))}>{c4:.2f}
-                                <td valign=top>{mark}</tr>"""
-                        out.append(item)
-                elif self.num_classes == 2:
-                    for c0, c1, sentence, label, pred in zip(df_.c0, df_.c1, df_.sentence, df_.label, df_.pred):
-                        cnt += 1
-                        mark = "" if label == pred else "<span class=wrong>oops</span>"
-                        item = f"""<tr><th valign=top>{cnt}.
-                                <td valign=top width=70%>{sentence}
-                                <td valign=top>{label_name[label]}
-                                <td valign=top class=hi{int(c0>max(c1))}>{c0:.2f}
-                                <td valign=top class=hi{int(c1>max(c0))}>{c1:.2f}
-                                <td valign=top>{mark}</tr>"""
-                        out.append(item)
-                else:
-                    print('Currently error analysis only supports n=2,4,5 classes, please edit code.')
-
-                out.append('</table></div>')
-
-        html_file_output = '/var/www/html/a.html'
-        html_file_output = '/tmp/a.html'
-        with open(html_file_output, 'w') as fout:
-            fout.write('\n'.join(out))
-            print(f'\n- HTML file output to: "{html_file_output}"\n')
-
     def main(self, task):
         task_func = {
             'train_kfold': self.train_KFold_model,
             'train_one_full_model': self.train_one_full_model,
-            'evaluate_and_error_analysis': self.evaluate_and_error_analysis,
             'apply_one_full_model_to_new_sentences': self.apply_one_full_model_to_new_sentences,
             'apply_KFold_model_to_new_sentences': self.apply_KFold_model_to_new_sentences
         }

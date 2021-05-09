@@ -7,8 +7,14 @@ This repository holds the supplementary materials for the paper "Causal Counterf
 * src: Holds data files and train/test steps
 
 # Dependencies
+For generating augmentations (negations and strengthening edits):
 ```
-pytorch, cudatoolkit, IPython, tensorflow, transformers
+numpy, pandas, nltk, pattern, spacy, collections
+```
+
+For running training and testing pipeline:
+```
+pytorch, cudatoolkit, IPython, tensorflow, transformers, scikit-learn, scipy
 ```
 
 # Running the code

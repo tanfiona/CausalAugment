@@ -1,5 +1,5 @@
 # CausalAugment
-This repository holds the supplementary materials for the paper "Causal Counterfactual Augmentation for Causal Sentence Classification". [Submission to IJCNN 2021].
+This repository holds the supplementary materials for the paper "Causal Counterfactual Augmentation for Causal Sentence Classification". [Submission to ACL Rolling Review 2021].
 
 # About the code
 * process: Performs counterfactual augments (creates and appends edits)

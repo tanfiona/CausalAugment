@@ -8,7 +8,7 @@ This repository holds the supplementary materials for the paper "Causal Counterf
 
 # Dependencies
 ```
-pytorch, cudatoolkit, IPython, tensorflow
+pytorch, cudatoolkit, IPython, tensorflow, transformers
 ```
 
 # Running the code

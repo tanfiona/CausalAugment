@@ -9,12 +9,12 @@ This repository holds the supplementary materials for the paper "Causal Counterf
 # Dependencies
 For generating augmentations (negations and strengthening edits):
 ```
-numpy, pandas, nltk, pattern, spacy, collections
+numpy, pandas, nltk, pattern, spacy, transformers, collections
 ```
 
 For running training and testing pipeline:
 ```
-pytorch, cudatoolkit, IPython, tensorflow, transformers, scikit-learn, scipy
+pytorch, cudatoolkit, IPython, tensorflow, transformers, scikit-learn, scipy, joblib
 ```
 
 # Running the code

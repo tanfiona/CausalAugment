@@ -1,5 +1,5 @@
 # CausalAugment
-This repository holds the supplementary materials for the paper "Causal Counterfactual Augmentation for Causal Sentence Classification".
+This repository holds the supplementary materials for the paper "Counterfactual Augmentation for Causal Sentence Classification".
 
 # Abstract
 Scarcity of corpora with annotated causal texts can lead to poor robustness when training state-of-the-art (SOTA) language models for causal sentence classification. In particular, we find that SOTA models misclassify on augmented sentences that have been negated or strengthened in terms of their causal meaning. This is worrying because minor linguistic changes in causal sentences can have disparate meaning. To resolve these issues, we propose a rule-based augmentation of causal sentences for creating contrast sets. Interestingly, introducing simple heuristics (like sentence shortening or multiplying key causal terms) to emphasize semantically important keywords to the model can improve classification performance. We demonstrate these findings on different training setups and across two out-of-domain corpora. Our proposed mixture of augmented edits consistently achieves improved performance compared to baseline across two models and both within and out of corpus' domain, suggesting our proposed augmentation also helps the model generalize.

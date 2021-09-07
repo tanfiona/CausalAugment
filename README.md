@@ -80,4 +80,4 @@ If you already have trained your model and just want to predict the model on oth
 * [altlex dataset](https://github.com/chridey/altlex/tree/master/data)
 
 # Remarks
-[Submission to ACL Rolling Review 2021]
+Submitted and accepted to CI+NLP @ EMNLP 2021.

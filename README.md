@@ -29,7 +29,7 @@ We have saved the main edits featured in the paper under 'src/data/.' for conven
 With the respective edits saved in csv, you can create any combination of augmented datasets built from "Original + Edits". Simply run the code under 'process/process_edits.py' by amending the function under '__main__' as follows. For example, to create our proposed augment of "Original + Negation\*Shorten + Strengthen\*Regular", use the following function: <br>
 ```
   run_one_full_round(
-      directory_name = "D:/50 CausalCF/data/",
+      directory_name = "src/data/",
       edits_file_name = ["pubmed_edits_shorten.csv", "pubmed_2to1_edits.csv"],
       filter_examples_by = None,
       dataset_name = 'pubmed',

@@ -54,9 +54,9 @@ python main.py
 ```
 Some options are available from command line, the important ones highlighted as follows:
 ```
-'--learning_rate', type=float, default=0.05,
-'--random_state', type = int, default = 0
-'--cuda_device', type = str, default = '1'
+--learning_rate', type=float, default=0.05,
+--random_state', type = int, default = 0
+--cuda_device', type = str, default = '1'
 ```
 Other configurations, like which dataset to apply on during out-of-domain testing, is amendable within '__main__'. For example, in experiments not shown in our paper, we also train on AltLex dataset instead:
 ```

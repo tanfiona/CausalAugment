@@ -39,6 +39,8 @@ With the respective edits saved in csv, you can create any combination of augmen
       )
 ```
 The final augmented dataset that will be randomly sampled and deduplicated would be named as "pubmed_mix01_edits_4t_rs.csv" and saved under the same data folder.
+Alternatively, you may also explore our contribution to [NL-Augmenter](https://github.com/GEM-benchmark/NL-Augmenter) and apply the transformations under `negate_strengthen` in their framework.
+
 
 ### Training and testing
 Before running the BERT+MLP or BERT+MLP+SVM pipeline, you need to install our model into the system. Enter into the model folder to pip install:

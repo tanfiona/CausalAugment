@@ -568,133 +568,136 @@ def run_one_full_round(bert_model_name, classifier_name, dataset_name, edits_nam
 if __name__ == "__main__":
     tic = time.time()
 
-    classifier_name='mlp' #
+    ##### adjust settings here
+    classifier_name = 'mlp'
+    dataset = 'pubmed'
+    bert_model_name = 'biobert'
 
     ##### regular edits #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='edits', data_dir='data', extensions = '', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='edits', data_dir='data', extensions = '', 
         k=5, epochs=5, run_base=True
     )
 
     ##### shorten originals + shorten edits #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='oriedits', data_dir='data', extensions = '_shorten', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='oriedits', data_dir='data', extensions = '_shorten', 
         k=5, epochs=5, run_base=True
     )
 
     ##### multiples edits #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='edits', data_dir='data', extensions = '_multiples', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='edits', data_dir='data', extensions = '_multiples', 
         k=5, epochs=5, run_base=False
     )
 
     ##### shorten edits #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='edits', data_dir='data', extensions = '_shorten', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='edits', data_dir='data', extensions = '_shorten', 
         k=5, epochs=5, run_base=False
     )
 
     ##### t5para edits #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='edits', data_dir='data', extensions = '_t5para', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='edits', data_dir='data', extensions = '_t5para', 
         k=5, epochs=5, run_base=False
     )
 
     ##### synonyms edits #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='edits', data_dir='data', extensions = '_synonyms', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='edits', data_dir='data', extensions = '_synonyms', 
         k=5, epochs=5, run_base=False
     )
 
     ##### mask originals + mask edits #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='oriedits', data_dir='data', extensions = '_mask', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='oriedits', data_dir='data', extensions = '_mask', 
         k=5, epochs=5, run_base=True
     )
 
     ##### base on negation #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='oriedits', data_dir='data', extensions = '_removed', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='oriedits', data_dir='data', extensions = '_removed', 
         k=5, epochs=5, run_base=True, apply_on = "data/pubmed_edits_removed_test.csv"
     )
     
     ##### regular edits (2to1) #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='2to1_edits', data_dir='data', extensions = '', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='2to1_edits', data_dir='data', extensions = '', 
         k=5, epochs=5, run_base=False, run_5t=False
     )
 
     ##### shorten edits (2to1) #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='2to1_edits', data_dir='data', extensions = '_shorten', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='2to1_edits', data_dir='data', extensions = '_shorten', 
         k=5, epochs=5, run_base=False, run_5t=False
     )
 
     ##### shorten originals + shorten edits (2to1) #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='2to1_oriedits', data_dir='data', extensions = '_shorten', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='2to1_oriedits', data_dir='data', extensions = '_shorten', 
         k=5, epochs=5, run_base=False, run_5t=False
     )
 
     ##### multiples edits (2to1) #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='2to1_edits', data_dir='data', extensions = '_multiples', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='2to1_edits', data_dir='data', extensions = '_multiples', 
         k=5, epochs=5, run_base=False, run_5t=False
     )
 
     ##### mask originals + mask edits (2to1) #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='2to1_oriedits', data_dir='data', extensions = '_mask', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='2to1_oriedits', data_dir='data', extensions = '_mask', 
         k=5, epochs=5, run_base=False, run_5t=False
     )
 
     ##### t5para edits (2to1) #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='2to1_edits', data_dir='data', extensions = '_t5para', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='2to1_edits', data_dir='data', extensions = '_t5para', 
         k=5, epochs=5, run_base=False, run_5t=False
     )
 
     ##### synonyms edits (2to1) #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='2to1_edits', data_dir='data', extensions = '_synonyms', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='2to1_edits', data_dir='data', extensions = '_synonyms', 
         k=5, epochs=5, run_base=False, run_5t=False
     )
 
     ##### base on 2to1 #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='2to1_oriedits', data_dir='data', extensions = '_removed', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='2to1_oriedits', data_dir='data', extensions = '_removed', 
         k=5, epochs=5, run_base=True, run_5t=False,
         apply_on = "data/pubmed_2to1_edits_removed_test.csv"
     )
@@ -702,258 +705,32 @@ if __name__ == "__main__":
     ##### regular edits (all) #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='all_edits', data_dir='data', extensions = '', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='all_edits', data_dir='data', extensions = '', 
         k=5, epochs=5, run_base=False
     )
 
     ##### regular edits (mix) #####
 
     run_one_full_round(
-        bert_model_name='biobert', classifier_name=classifier_name, 
-        dataset_name='pubmed', edits_name='mix01_edits', data_dir='data', extensions = '', 
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='mix01_edits', data_dir='data', extensions = '', 
         k=5, epochs=5, run_base=False
     )
 
-    # ##### shorten edits (mix) #####
+    ##### regular edits (mix02) #####
+    run_one_full_round(
+        bert_model_name=bert_model_name, classifier_name=classifier_name, 
+        dataset_name=dataset, edits_name='mix02_edits', data_dir='data', extensions = '', 
+        k=5, epochs=5, run_base=False, run_5t=False, run_4t=False,
+    )
 
-    # run_one_full_round(
-    #     bert_model_name='biobert', classifier_name=classifier_name, 
-    #     dataset_name='pubmed', edits_name='mix02_oriedits', data_dir='data', extensions = '_shorten', 
-    #     k=5, epochs=5, run_base=False, run_5t=False, run_4t=False
-    # )
-
-    # ##### predict base/edit labels #####
-    # mt = ModelTrainTester(
-    #     bert_model_name='biobert', classifier_name='mlp', dataset_name='pubmed', 
-    #     train_file='pubmed_mix01_edits_4t_rs_betype',
-    #     label_name = {0:'base', 1:'edit'}, 
-    #     k=5, epochs=5, data_dir='data', label_list={0: 0, 1: 1})
-    # mt.main(task = 'train_kfold')
-    # mt.fpath_unseen_data = "data/pubmed_mix01_edits_4t_rs_betype_test.csv"
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # ##### ood_testing #####
-    # ##### regular edits #####
-    classifier_name = 'svm'
-    dataset = 'altlex'
-    bert_model_name = 'biobert'
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, dataset_name=dataset, 
-    #     train_file=f'{dataset}_base', k=5, epochs=5, data_dir='data',
-    #     label_name = {0:'not_causal', 1:'causal'}, label_list={0: 0, 1: 1})
-    # mt.main(task = 'train_kfold')
-    # mt.fpath_unseen_data = "data/altlex_base.csv"
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, dataset_name=dataset, 
-    #     train_file=f'{dataset}_edits_4t', k=5, epochs=5, data_dir='data',
-    #     label_name = {0:'not_causal', 1:'causal'}, label_list={0: 0, 1: 1})
-    # mt.main(task = 'train_kfold')
-    # mt.fpath_unseen_data = "data/altlex_base.csv"
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, dataset_name=dataset, 
-    #     train_file=f'{dataset}_edits_4t_rs', k=5, epochs=5, data_dir='data',
-    #     label_name = {0:'not_causal', 1:'causal'}, label_list={0: 0, 1: 1})
-    # mt.main(task = 'train_kfold')
-    # mt.fpath_unseen_data = "data/altlex_base.csv"
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # ##### shorten edits #####
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, dataset_name=dataset, 
-    #     train_file=f'{dataset}_edits_4t_shorten', k=5, epochs=5, data_dir='data',
-    #     label_name = {0:'not_causal', 1:'causal'}, label_list={0: 0, 1: 1})
-    # mt.main(task = 'train_kfold')
-    # mt.fpath_unseen_data = "data/altlex_base.csv"
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, dataset_name=dataset, 
-    #     train_file=f'{dataset}_edits_4t_rs_shorten', k=5, epochs=5, data_dir='data',
-    #     label_name = {0:'not_causal', 1:'causal'}, label_list={0: 0, 1: 1})
-    # mt.main(task = 'train_kfold')
-    # mt.fpath_unseen_data = "data/altlex_base.csv"
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # ##### multiples edits #####
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, dataset_name=dataset, 
-    #     train_file=f'{dataset}_edits_4t_multiples', k=5, epochs=5, data_dir='data',
-    #     label_name = {0:'not_causal', 1:'causal'}, label_list={0: 0, 1: 1})
-    # mt.main(task = 'train_kfold')
-    # # mt.fpath_unseen_data = "data/altlex_base.csv"
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, dataset_name=dataset, 
-    #     train_file=f'{dataset}_edits_4t_rs_multiples', k=5, epochs=5, data_dir='data',
-    #     label_name = {0:'not_causal', 1:'causal'}, label_list={0: 0, 1: 1})
-    # mt.main(task = 'train_kfold')
-    # # mt.fpath_unseen_data = "data/altlex_base.csv"
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    ##### regular edits (supcon) #####
-
-    bert_model_name='biobert'
-    classifier_name='supcon'
-    dataset_name='pubmed'
-    data_dir='data'
-    extensions = ''
-    k=5
-    epochs=20
-    supcon_aug_method = 't5para' #'synonyms' # 'shorten'
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir,
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3}, supcon_incl_negs=False, 
-    #     supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # req eps != 0 = 1e-2
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir,
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3}, supcon_incl_negs=False, 
-    #     loss_method='ce+supcon', supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr', 4:'no_caus'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir,
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3, 4: 4}, supcon_incl_negs=True, 
-    #     supcon_edit_name='_edits_5t', supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr', 4:'no_caus'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir, loss_method='ce+triplet',
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3, 4: 4}, supcon_incl_negs=True, 
-    #     supcon_edit_name='_edits_5t', supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir,
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3}, supcon_incl_negs=True, 
-    #     supcon_edit_name='_2to1_edits_4t', supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir, loss_method='ce+triplet',
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3}, supcon_incl_negs=True, 
-    #     supcon_edit_name='_2to1_edits_4t', supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    #####
-
-    supcon_aug_method = 'shorten'
-    supcon_aug_method = 'synonyms'
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir,
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3}, supcon_incl_negs=False, 
-    #     supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir,
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3}, supcon_incl_negs=False, 
-    #     loss_method='ce+supcon', supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr', 4:'no_caus'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir,
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3, 4: 4}, supcon_incl_negs=True, 
-    #     supcon_edit_name='_edits_5t', supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-    
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr', 4:'no_caus'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir, loss_method='ce+triplet',
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3, 4: 4}, supcon_incl_negs=True, 
-    #     supcon_edit_name='_edits_5t', supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr', 4:'no_caus'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir, loss_method='ce+supcon',
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3, 4: 4}, supcon_incl_negs=True, 
-    #     supcon_edit_name='_edits_5t', supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir,
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3}, supcon_incl_negs=True, 
-    #     supcon_edit_name='_2to1_edits_4t', supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir, loss_method='ce+triplet',
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3}, supcon_incl_negs=True, 
-    #     supcon_edit_name='_2to1_edits_4t', supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
-
-    # mt = ModelTrainTester(
-    #     bert_model_name=bert_model_name, classifier_name=classifier_name, 
-    #     dataset_name=dataset_name, train_file=f'{dataset_name}_base{extensions}',
-    #     label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr'}, 
-    #     k=k, epochs=epochs, data_dir=data_dir, loss_method='ce+supcon',
-    #     label_list={0: 0, 1: 1, 2: 2, 3: 3}, supcon_incl_negs=True, 
-    #     supcon_edit_name='_2to1_edits_4t', supcon_aug_method=supcon_aug_method)
-    # mt.main(task = 'train_kfold')
-    # mt.main(task = 'apply_KFold_model_to_new_sentences')
+    ##### ood_testing #####
+    mt = ModelTrainTester(
+        bert_model_name=bert_model_name, classifier_name=classifier_name, dataset_name=dataset, 
+        train_file=f'{dataset}_mix02_edits_4t_rs', k=5, epochs=5, data_dir='data',
+        label_name = {0:'none', 1:'causal', 2:'cond', 3:'corr'}, label_list={0: 0, 1: 1, 2: 2, 3: 3})
+    mt.fpath_unseen_data = "data/altlex_base.csv"
+    mt.main(task = 'apply_KFold_model_to_new_sentences')
 
     print(f'time used: {time.time()-tic:.0f} seconds')
